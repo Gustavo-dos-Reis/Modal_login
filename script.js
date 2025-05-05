@@ -8,35 +8,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailErro = document.getElementById('email-erro');
     const senhaErro = document.getElementById('senha-erro');
 
-    // Abrir modal
     btnAbrir.addEventListener('click', function() {
         abrirModal();
     });
 
-    // Fechar modal
     btnFechar.addEventListener('click', function() {
         fecharModal();
     });
 
-    // Fechar ao clicar fora do modal
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             fecharModal();
         }
     });
 
-    // Fechar com ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('ativo')) {
             fecharModal();
         }
     });
 
-    // Validação do formulário
     formLogin.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Resetar erros
         emailErro.textContent = '';
         senhaErro.textContent = '';
         emailInput.classList.remove('erro');
@@ -44,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let valido = true;
         
-        // Validar email
         if (!emailInput.value) {
             emailErro.textContent = 'Por favor, digite seu e-mail';
             emailInput.classList.add('erro');
@@ -55,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         }
         
-        // Validar senha
         if (!senhaInput.value) {
             senhaErro.textContent = 'Por favor, digite sua senha';
             senhaInput.classList.add('erro');
@@ -66,9 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valido = false;
         }
         
-        // Se tudo estiver válido
         if (valido) {
-            // Simular envio (substitua por sua lógica real)
             console.log('Formulário válido, enviando...');
             alert('Login realizado com sucesso!');
             fecharModal();
@@ -76,20 +66,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Função para abrir modal
     function abrirModal() {
         modal.classList.add('ativo');
-        document.body.style.overflow = 'hidden'; // Impede rolagem da página
+        document.body.style.overflow = 'hidden'; 
         emailInput.focus();
     }
 
-    // Função para fechar modal
     function fecharModal() {
         modal.classList.remove('ativo');
-        document.body.style.overflow = 'auto'; // Restaura rolagem
+        document.body.style.overflow = 'auto'; 
     }
 
-    // Validar formato de e-mail
     function validarEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
